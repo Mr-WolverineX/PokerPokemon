@@ -1,0 +1,78 @@
+pokemon<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Poker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Marcador de dinero -->
+        <div class="scoreboard">
+            <div class="player-money">
+                <h3>Tu Dinero</h3>
+                <p class="money-amount" id="playerMoney">$1000</p>
+            </div>
+            <div class="computer-money">
+                <h3>Computadora</h3>
+                <p class="money-amount" id="computerMoney">$1000</p>
+            </div>
+        </div>
+
+        <!-- Título -->
+        <h1 class="game-title">🎮 POKÉMON POKER 🎮</h1>
+
+        <!-- Área de juego -->
+        <div class="game-area">
+            <!-- Mano de la computadora -->
+            <div class="hand computer-hand">
+                <h2>Computadora</h2>
+                <div class="cards" id="computerCards">
+                    <!-- Las cartas se generarán aquí -->
+                </div>
+                <p class="hand-result" id="computerResult"></p>
+            </div>
+
+            <!-- Bote y controles -->
+            <div class="game-controls">
+                <div class="pot">
+                    <h3>Bote</h3>
+                    <p class="pot-amount" id="potAmount">$0</p>
+                </div>
+                
+                <div class="bet-controls">
+                    <label for="betAmount">Apuesta:</label>
+                    <input type="number" id="betAmount" min="10" max="100" value="20" step="10">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="dealBtn" class="btn btn-primary">Repartir Cartas</button>
+                    <button id="foldBtn" class="btn btn-danger" disabled>Retirarse</button>
+                    <button id="callBtn" class="btn btn-success" disabled>Igualar</button>
+                    <button id="raiseBtn" class="btn btn-warning" disabled>Subir</button>
+                </div>
+
+                <p class="game-message" id="gameMessage">Presiona "Repartir Cartas" para comenzar</p>
+            </div>
+
+            <!-- Mano del jugador -->
+            <div class="hand player-hand">
+                <h2>Tu Mano</h2>
+                <div class="cards" id="playerCards">
+                    <!-- Las cartas se generarán aquí -->
+                </div>
+                <p class="hand-result" id="playerResult"></p>
+            </div>
+        </div>
+
+        <!-- Historial de ganadores -->
+        <div class="winner-history">
+            <h3>🏆 Historial de Rondas</h3>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
