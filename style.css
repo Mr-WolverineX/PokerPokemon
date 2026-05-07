@@ -1009,11 +1009,185 @@ body {
     }
 }
 
+/* Prompt de instalación PWA */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+.install-content {
+    background: linear-gradient(135deg, #1a5f3f 0%, #0d3d27 100%);
+    padding: 20px 25px;
+    border-radius: 20px;
+    border: 3px solid #ffd700;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 500px;
+}
+
+.install-icon {
+    width: 60px;
+    height: 60px;
+    animation: bounce 1s infinite;
+}
+
+.install-text h3 {
+    color: #ffd700;
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+}
+
+.install-text p {
+    color: #fff;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.install-buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.install-buttons .btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .scoreboard {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .player-money-solo {
+        width: 100%;
+    }
+    
+    .top-ranking {
+        width: 100%;
+    }
+    
+    .podium {
+        gap: 5px;
+    }
+    
+    .rank-position {
+        min-width: 80px;
+    }
+    
+    .poker-table {
+        border-radius: 100px;
+        padding: 30px 20px;
+    }
+    
+    .community-cards-area {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
-    .game-title {
-        font-size: 1.5em;
+    body {
+        padding: 10px;
+    }
+    
+    .scoreboard {
+        flex-direction: column;
         gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .player-money-solo {
+        padding: 15px 20px;
+    }
+    
+    .player-money-solo h3 {
+        font-size: 1em;
+    }
+    
+    .money-amount {
+        font-size: 2em;
+    }
+    
+    .top-ranking {
+        padding: 10px 15px;
+    }
+    
+    .top-ranking h3 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .podium {
+        gap: 5px;
+    }
+    
+    .rank-position {
+        min-width: 70px;
+        padding: 8px 5px;
+    }
+    
+    .rank-1 {
+        height: 100px;
+    }
+    
+    .rank-2 {
+        height: 85px;
+    }
+    
+    .rank-3 {
+        height: 70px;
+    }
+    
+    .medal {
+        font-size: 1.5em;
+        margin-bottom: 3px;
+    }
+    
+    .rank-name {
+        font-size: 0.75em;
+    }
+    
+    .rank-money {
+        font-size: 0.9em;
+    }
+    
+    .show-ranking-btn {
+        padding: 6px;
+        font-size: 0.85em;
+    }
+    
+    .help-button {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    
+    .game-title {
+        font-size: 1.8em;
+        gap: 10px;
+        margin-bottom: 20px;
     }
     
     .title-pikachu {
@@ -1023,70 +1197,31 @@ body {
     
     .poker-table {
         border-radius: 50px;
-        padding: 20px;
+        padding: 20px 15px;
+        min-height: auto;
     }
     
-    .dealer-area, .player-area {
-        flex-direction: column;
+    .dealer-area {
+        padding: 10px 0;
     }
     
-    .dealer-icon, .player-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 2em;
+    .dealer-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 3em;
     }
     
-    .chip {
-        width: 35px;
-        height: 35px;
+    .dealer-avatar-center h2 {
+        font-size: 1.2em;
     }
     
-    .card {
-        width: 80px;
-        height: 115px;
+    .dealer-subtitle {
+        font-size: 0.8em;
     }
     
-    .card-value {
-        font-size: 1.3em;
-        top: 5px;
-        left: 5px;
-    }
-    
-    .card-suit {
-        font-size: 1.3em;
-        top: 5px;
-        right: 5px;
-    }
-    
-    .card-image {
-        width: 60px;
-        height: 60px;
-        margin-top: 15px;
-    }
-    
-    .card-pokemon {
-        font-size: 0.6em;
-        bottom: 5px;
-    }
-    
-    .money-amount {
-        font-size: 1.5em;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 100%;
-        padding: 10px 15px;
-        font-size: 0.9em;
-    }
-    
-    .pot-area {
-        flex-direction: column;
-        padding: 15px 20px;
+    .table-center {
+        gap: 15px;
+        padding: 15px 0;
     }
     
     .community-cards-area {
@@ -1096,36 +1231,278 @@ body {
     }
     
     .community-title {
+        font-size: 1.1em;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    
+    .community-cards-area .cards {
+        min-height: 140px;
+    }
+    
+    .pot-area {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+    
+    .pot-display h3 {
+        font-size: 1em;
+    }
+    
+    .pot-amount {
+        font-size: 1.5em;
+    }
+    
+    .game-controls {
+        padding: 15px 20px;
+    }
+    
+    .bet-controls {
+        margin: 15px 0;
+    }
+    
+    .bet-controls label {
+        font-size: 1em;
+    }
+    
+    .bet-controls input {
+        padding: 8px 12px;
+        font-size: 1em;
+        width: 100px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+        margin: 15px 0;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 0.95em;
+    }
+    
+    .game-message {
+        font-size: 1em;
+        margin-top: 15px;
+    }
+    
+    .player-area {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+    
+    .player-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5em;
+    }
+    
+    .player-avatar h2 {
+        font-size: 1.1em;
+    }
+    
+    .player-chips, .dealer-chips {
+        display: none;
+    }
+    
+    .cards {
+        gap: 8px;
+        min-height: 120px;
+    }
+    
+    .card {
+        width: 85px;
+        height: 125px;
+        padding: 6px;
+    }
+    
+    .card-value {
+        font-size: 1.4em;
+        top: 6px;
+        left: 6px;
+    }
+    
+    .card-suit {
+        font-size: 1.4em;
+        top: 6px;
+        right: 6px;
+    }
+    
+    .card-image {
+        width: 65px;
+        height: 65px;
+        margin-top: 18px;
+    }
+    
+    .card-pokemon {
+        font-size: 0.65em;
+        bottom: 6px;
+    }
+    
+    .hand-result {
+        font-size: 1em;
+        margin-top: 10px;
+    }
+    
+    .winner-history {
+        margin-top: 20px;
+        padding: 15px;
+    }
+    
+    .winner-history h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    
+    .history-item {
+        padding: 8px;
         font-size: 0.9em;
     }
     
     .win-text, .lose-text {
-        font-size: 4em;
-    }
-    
-    .help-button {
-        top: 10px;
-        right: 10px;
-        padding: 10px 15px;
-        font-size: 0.9em;
+        font-size: 3.5em;
     }
     
     .modal-content {
         width: 95%;
         padding: 20px;
-        margin: 10% auto;
+        margin: 5% auto;
     }
     
     .modal-content h2 {
         font-size: 1.5em;
+        margin-bottom: 20px;
     }
     
     .rankings-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .rank-item {
+        padding: 15px;
+    }
+    
+    .rank-item h3 {
+        font-size: 1.1em;
     }
     
     .rank-item p {
-        font-size: 1.2em;
+        font-size: 1.1em;
         letter-spacing: 1px;
+    }
+    
+    .rank-item small {
+        font-size: 0.85em;
+    }
+    
+    .top10-list {
+        max-height: 300px;
+    }
+    
+    .top10-item {
+        padding: 12px 15px;
+        flex-wrap: wrap;
+    }
+    
+    .top10-rank {
+        font-size: 1.2em;
+        min-width: 30px;
+    }
+    
+    .top10-name {
+        font-size: 1em;
+        margin: 0 10px;
+    }
+    
+    .top10-money {
+        font-size: 1.1em;
+    }
+    
+    .save-score-section {
+        padding: 15px;
+    }
+    
+    .save-score-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    #playerNameInput {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 1em;
+        padding: 10px;
+    }
+    
+    #saveScoreBtn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 1.3em;
+        gap: 8px;
+    }
+    
+    .title-pikachu {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .poker-table {
+        padding: 15px 10px;
+    }
+    
+    .community-title {
+        font-size: 0.9em;
+        letter-spacing: 1px;
+    }
+    
+    .card {
+        width: 70px;
+        height: 105px;
+    }
+    
+    .card-value, .card-suit {
+        font-size: 1.2em;
+    }
+    
+    .card-image {
+        width: 55px;
+        height: 55px;
+        margin-top: 15px;
+    }
+    
+    .card-pokemon {
+        font-size: 0.6em;
+    }
+    
+    .win-text, .lose-text {
+        font-size: 2.5em;
+    }
+    
+    .rank-position {
+        min-width: 60px;
+        padding: 6px 3px;
+    }
+    
+    .rank-name {
+        font-size: 0.7em;
+    }
+    
+    .rank-money {
+        font-size: 0.8em;
+    }
+    
+    .medal {
+        font-size: 1.3em;
     }
 }
