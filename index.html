@@ -1,4 +1,4 @@
-pokemon<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,61 +8,200 @@ pokemon<!DOCTYPE html>
 </head>
 <body>
     <div class="game-container">
-        <!-- Marcador de dinero -->
+        <!-- Marcador de dinero y ranking -->
         <div class="scoreboard">
-            <div class="player-money">
-                <h3>Tu Dinero</h3>
+            <div class="player-money-solo">
+                <h3>💰 Tu Dinero</h3>
                 <p class="money-amount" id="playerMoney">$1000</p>
             </div>
-            <div class="computer-money">
-                <h3>Computadora</h3>
-                <p class="money-amount" id="computerMoney">$1000</p>
+            
+            <!-- Top 3 Ranking -->
+            <div class="top-ranking">
+                <h3>🏆 Top Jugadores</h3>
+                <div class="podium">
+                    <div class="rank-position rank-2">
+                        <div class="medal">🥈</div>
+                        <p class="rank-name" id="rank2Name">---</p>
+                        <p class="rank-money" id="rank2Money">$0</p>
+                    </div>
+                    <div class="rank-position rank-1">
+                        <div class="medal">🥇</div>
+                        <p class="rank-name" id="rank1Name">---</p>
+                        <p class="rank-money" id="rank1Money">$0</p>
+                    </div>
+                    <div class="rank-position rank-3">
+                        <div class="medal">🥉</div>
+                        <p class="rank-name" id="rank3Name">---</p>
+                        <p class="rank-money" id="rank3Money">$0</p>
+                    </div>
+                </div>
+                <button id="showFullRankingBtn" class="show-ranking-btn">Ver Top 10 📊</button>
             </div>
         </div>
 
-        <!-- Título -->
-        <h1 class="game-title">🎮 POKÉMON POKER 🎮</h1>
-
-        <!-- Área de juego -->
-        <div class="game-area">
-            <!-- Mano de la computadora -->
-            <div class="hand computer-hand">
-                <h2>Computadora</h2>
-                <div class="cards" id="computerCards">
-                    <!-- Las cartas se generarán aquí -->
+        <!-- Modal de Top 10 -->
+        <div id="top10Modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal close-top10">&times;</span>
+                <h2>🏆 TOP 10 JUGADORES 🏆</h2>
+                <div class="top10-list" id="top10List">
+                    <!-- Se llenará dinámicamente -->
                 </div>
-                <p class="hand-result" id="computerResult"></p>
+                <div class="save-score-section">
+                    <h3>💾 Guardar tu Puntuación</h3>
+                    <input type="text" id="playerNameInput" placeholder="Ingresa tu nombre" maxlength="20">
+                    <button id="saveScoreBtn" class="btn btn-success">Guardar Puntuación</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Ayuda -->
+        <button id="helpBtn" class="help-button">❓ Ranking de Manos</button>
+
+        <!-- Título -->
+        <h1 class="game-title">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="title-pikachu">
+            POKÉMON POKER
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="title-pikachu">
+        </h1>
+
+        <!-- Modal de Ranking -->
+        <div id="rankingModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>🏆 POKER HAND RANKINGS 🏆</h2>
+                <div class="rankings-grid">
+                    <div class="rank-item rank-1">
+                        <div class="rank-number">1</div>
+                        <h3>🏆 Escalera Real</h3>
+                        <p>A♠ K♠ Q♠ J♠ 10♠</p>
+                        <small>5 cartas consecutivas del mismo tipo, de 10 a As</small>
+                    </div>
+                    <div class="rank-item rank-2">
+                        <div class="rank-number">2</div>
+                        <h3>💎 Escalera de Color</h3>
+                        <p>9♥ 8♥ 7♥ 6♥ 5♥</p>
+                        <small>5 cartas consecutivas del mismo tipo</small>
+                    </div>
+                    <div class="rank-item rank-3">
+                        <div class="rank-number">3</div>
+                        <h3>🎯 Poker</h3>
+                        <p>K♣ K♦ K♥ K♠ 3♦</p>
+                        <small>4 cartas del mismo valor</small>
+                    </div>
+                    <div class="rank-item rank-4">
+                        <div class="rank-number">4</div>
+                        <h3>🏠 Full House</h3>
+                        <p>A♠ A♦ A♣ 8♥ 8♠</p>
+                        <small>3 cartas iguales + 2 cartas iguales</small>
+                    </div>
+                    <div class="rank-item rank-5">
+                        <div class="rank-number">5</div>
+                        <h3>🌈 Color</h3>
+                        <p>K♦ J♦ 9♦ 6♦ 3♦</p>
+                        <small>5 cartas del mismo tipo</small>
+                    </div>
+                    <div class="rank-item rank-6">
+                        <div class="rank-number">6</div>
+                        <h3>📊 Escalera</h3>
+                        <p>10♠ 9♣ 8♦ 7♥ 6♠</p>
+                        <small>5 cartas consecutivas</small>
+                    </div>
+                    <div class="rank-item rank-7">
+                        <div class="rank-number">7</div>
+                        <h3>🎲 Trío</h3>
+                        <p>Q♠ Q♥ Q♦ 7♣ 4♠</p>
+                        <small>3 cartas del mismo valor</small>
+                    </div>
+                    <div class="rank-item rank-8">
+                        <div class="rank-number">8</div>
+                        <h3>👥 Doble Par</h3>
+                        <p>J♣ J♦ 5♥ 5♠ 2♣</p>
+                        <small>2 pares de cartas iguales</small>
+                    </div>
+                    <div class="rank-item rank-9">
+                        <div class="rank-number">9</div>
+                        <h3>🎴 Par</h3>
+                        <p>10♥ 10♦ K♠ 6♣ 3♥</p>
+                        <small>2 cartas del mismo valor</small>
+                    </div>
+                    <div class="rank-item rank-10">
+                        <div class="rank-number">10</div>
+                        <h3>📄 Carta Alta</h3>
+                        <p>A♠ J♦ 8♣ 5♥ 2♠</p>
+                        <small>Ninguna combinación</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mesa de Poker -->
+        <div class="poker-table">
+            <!-- Área del Crupier -->
+            <div class="dealer-area">
+                <div class="dealer-avatar-center">
+                    <div class="dealer-icon">🎩</div>
+                    <h2>PokéCrupier</h2>
+                    <p class="dealer-subtitle">Repartiendo cartas...</p>
+                </div>
             </div>
 
-            <!-- Bote y controles -->
-            <div class="game-controls">
-                <div class="pot">
-                    <h3>Bote</h3>
-                    <p class="pot-amount" id="potAmount">$0</p>
+            <!-- Centro de la mesa -->
+            <div class="table-center">
+                <!-- PokéCartas -->
+                <div class="community-cards-area">
+                    <h3 class="community-title">⚡ PokéCartas ⚡</h3>
+                    <div class="cards" id="communityCards">
+                        <!-- Las cartas comunitarias se generarán aquí -->
+                    </div>
                 </div>
                 
-                <div class="bet-controls">
-                    <label for="betAmount">Apuesta:</label>
-                    <input type="number" id="betAmount" min="10" max="100" value="20" step="10">
+                <div class="pot-area">
+                    <div class="pot-chips">
+                        <div class="chip chip-stack chip-red"></div>
+                        <div class="chip chip-stack chip-blue"></div>
+                        <div class="chip chip-stack chip-green"></div>
+                    </div>
+                    <div class="pot-display">
+                        <h3>💰 BOTE</h3>
+                        <p class="pot-amount" id="potAmount">$0</p>
+                    </div>
                 </div>
+                
+                <div class="game-controls">
+                    <div class="bet-controls">
+                        <label for="betAmount">💵 Apuesta:</label>
+                        <input type="number" id="betAmount" min="10" max="100" value="20" step="10">
+                    </div>
 
-                <div class="action-buttons">
-                    <button id="dealBtn" class="btn btn-primary">Repartir Cartas</button>
-                    <button id="foldBtn" class="btn btn-danger" disabled>Retirarse</button>
-                    <button id="callBtn" class="btn btn-success" disabled>Igualar</button>
-                    <button id="raiseBtn" class="btn btn-warning" disabled>Subir</button>
+                    <div class="action-buttons">
+                        <button id="dealBtn" class="btn btn-primary">🎴 Repartir</button>
+                        <button id="foldBtn" class="btn btn-danger" disabled>❌ Retirarse</button>
+                        <button id="callBtn" class="btn btn-success" disabled>✅ Igualar</button>
+                        <button id="raiseBtn" class="btn btn-warning" disabled>⬆️ Subir</button>
+                    </div>
+
+                    <p class="game-message" id="gameMessage">Presiona "Repartir" para comenzar la partida</p>
                 </div>
-
-                <p class="game-message" id="gameMessage">Presiona "Repartir Cartas" para comenzar</p>
             </div>
 
-            <!-- Mano del jugador -->
-            <div class="hand player-hand">
-                <h2>Tu Mano</h2>
-                <div class="cards" id="playerCards">
-                    <!-- Las cartas se generarán aquí -->
+            <!-- Área del Jugador -->
+            <div class="player-area">
+                <div class="player-chips">
+                    <div class="chip chip-red"></div>
+                    <div class="chip chip-blue"></div>
+                    <div class="chip chip-green"></div>
                 </div>
-                <p class="hand-result" id="playerResult"></p>
+                <div class="player-cards-zone">
+                    <div class="cards" id="playerCards">
+                        <!-- Las cartas se generarán aquí -->
+                    </div>
+                    <p class="hand-result" id="playerResult"></p>
+                </div>
+                <div class="player-avatar">
+                    <div class="player-icon">👤</div>
+                    <h2>Tú</h2>
+                </div>
             </div>
         </div>
 
